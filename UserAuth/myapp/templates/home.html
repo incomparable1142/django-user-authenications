@@ -3,9 +3,55 @@
 
 {% block content %}
 
-<div class="container"><br><br><br><br>
-	<hr><br><br><br><br><br>
-  <h2 style="color:black;"><center>Thank You !!</center></h2>
-  <br><br><br><br><br><hr><br><br><br>
-</div>
-{% endblock %}
+<div class="row">
+		<div class="col-sm-4">
+			<div class="panel-group">
+				<div class="panel panel-default" style="margin-top:50px;">
+					<div class="panel-heading" style="text-align:center; font-size:25px;">Tutor Form</div>
+					<div class="panel-body">
+						<form method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ tutorForm.as_p }}
+							<button type="submit" class="btn btn-default">Submit</button>
+							<button type="reset" class="btn btn-default">Reset</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="panel-group">
+				<div class="panel panel-default" style="margin-top:50px;">
+					<div class="panel-heading" style="text-align:center; font-size:25px;">School Form</div>
+					<div class="panel-body">
+						<form method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ schoolForm.as_p }}
+							<button type="submit" class="btn btn-default">Submit</button>
+							<button type="reset" class="btn btn-default">Reset</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="panel-group">
+				<div class="panel panel-default" style="margin-top:50px;">
+					<div class="panel-heading" style="text-align:center; font-size:25px;">Coaching Form</div>
+					<div class="panel-body">
+						<form method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ coachingForm.as_p }}
+							<button type="submit" class="btn btn-default">Submit</button>
+							<button type="reset" class="btn btn-default">Reset</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	{% endblock %}

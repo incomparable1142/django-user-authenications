@@ -3,12 +3,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import TutorForm, SchoolForm, CoachingForm
+from .models import Tutor, School, Coaching
 # Create your views here.
 
 
 @login_required(login_url='login')
 def home(request):
-    return render(request, 'home.html')
+
+    dict = {'tutorForm': TutorForm(),
+            'schoolForm': SchoolForm(),
+            'coachingForm': CoachingForm()}
+
+    return render(request, 'home.html', dict)
 
 
 def signup(request):
