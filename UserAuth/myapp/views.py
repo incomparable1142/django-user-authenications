@@ -19,7 +19,7 @@ def home(request):
 @login_required(login_url='login')
 def tutor(request):
     if request.method == 'POST':
-        form = TutorForm(request.POST)
+        form = TutorForm(request.POST, request.FILES)
         if form.is_valid():
             fs = form.save(commit=False)
             fs.current_user = request.user.id
@@ -32,7 +32,7 @@ def tutor(request):
 @login_required(login_url='login')
 def coaching(request):
     if request.method == 'POST':
-        form = CoachingForm(request.POST)
+        form = CoachingForm(request.POST, request.FILES)
         if form.is_valid():
             fs = form.save(commit=False)
             fs.current_user = request.user.id
@@ -45,7 +45,7 @@ def coaching(request):
 @login_required(login_url='login')
 def school(request):
     if request.method == 'POST':
-        form = SchoolForm(request.POST)
+        form = SchoolForm(request.POST, request.FILES)
         if form.is_valid():
             fs = form.save(commit=False)
             fs.current_user = request.user.id
@@ -71,8 +71,6 @@ def show_tutor(request):
 def show_coaching(request):
     coaching_obj = Coaching.objects.filter(current_user=request.user.id)
     return render(request, 'coaching.html', {'data': coaching_obj})
-
-
 
 
 def signup(request):
