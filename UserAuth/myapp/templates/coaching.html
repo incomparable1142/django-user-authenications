@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="panel-group">
+		<div class="panel panel-default" style="margin-top:50px;">
+			<div class="panel-heading" style="text-align:center; font-size:25px;">Coaching records</div>
+			<div class="panel-body">
+				{% if data %}
+				<table class= "table table-hover table-bordered">
+					<tr>
+						<th>Name</th>
+						<th>Location</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Photo</th>
+						<th>Video</th>
+					</tr>
+					{% for item in data %}
+					<tr>
+						<td>{{item.name}}</td>
+						<td>{{item.location}}</td>
+						<td>{{item.email}}</td>
+						<td>{{item.phone}}</td>
+						<td>{{item.photo}}</td>
+						<td>{{item.video}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+				{% else %}
+				<p style="color: blue;">Table is empty..</p>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -12,8 +12,8 @@ class SchoolForm(forms.ModelForm):
             'location': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'autofocus': ''}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'required': True, 'autofocus': ''}),
             'phone': forms.NumberInput(attrs={'class': 'form-control', 'required': True}),
-            'photo': forms.FileInput(attrs={'class': 'form-control', 'multiple': True, 'accept': 'image/*'}),
-            'video': forms.FileInput(attrs={'class': 'form-control', 'multiple': True, 'accept': 'video/*'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control', 'required': True, 'multiple': True, 'accept': 'image/*'}),
+            'video': forms.FileInput(attrs={'class': 'form-control', 'required': True, 'multiple': True, 'accept': 'video/*'}),
         }
 
 

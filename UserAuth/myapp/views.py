@@ -10,12 +10,69 @@ from .models import Tutor, School, Coaching
 
 @login_required(login_url='login')
 def home(request):
+    dictionary = {'tutorForm': TutorForm(),
+                  'schoolForm': SchoolForm(),
+                  'coachingForm': CoachingForm()}
+    return render(request, 'home.html', dictionary)
 
-    dict = {'tutorForm': TutorForm(),
-            'schoolForm': SchoolForm(),
-            'coachingForm': CoachingForm()}
 
-    return render(request, 'home.html', dict)
+@login_required(login_url='login')
+def tutor(request):
+    if request.method == 'POST':
+        form = TutorForm(request.POST)
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.current_user = request.user.id
+            fs.save()
+            return redirect(show_tutor)
+    else:
+        return redirect(home)
+
+
+@login_required(login_url='login')
+def coaching(request):
+    if request.method == 'POST':
+        form = CoachingForm(request.POST)
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.current_user = request.user.id
+            fs.save()
+            return redirect(show_coaching)
+    else:
+        return redirect(home)
+
+
+@login_required(login_url='login')
+def school(request):
+    if request.method == 'POST':
+        form = SchoolForm(request.POST)
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.current_user = request.user.id
+            fs.save()
+            return redirect(show_school)
+    else:
+        return redirect(home)
+
+
+@login_required(login_url='login')
+def show_school(request):
+    school_obj = School.objects.filter(current_user=request.user.id)
+    return render(request, 'school.html', {'data': school_obj})
+
+
+@login_required(login_url='login')
+def show_tutor(request):
+    tutor_obj = Tutor.objects.filter(current_user=request.user.id)
+    return render(request, 'tutor.html', {'data': tutor_obj})
+
+
+@login_required(login_url='login')
+def show_coaching(request):
+    coaching_obj = Coaching.objects.filter(current_user=request.user.id)
+    return render(request, 'coaching.html', {'data': coaching_obj})
+
+
 
 
 def signup(request):
@@ -31,12 +88,6 @@ def signup(request):
         return render(request, 'signup.html')
 
 
-@login_required(login_url='login')
-def logout(request):
-    auth_logout(request)
-    return redirect('login')
-
-
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -50,3 +101,9 @@ def login(request):
             return redirect('login')
     else:
         return render(request, 'login.html')
+
+
+@login_required(login_url='login')
+def logout(request):
+    auth_logout(request)
+    return redirect('login')

@@ -21,4 +21,10 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
+    path('tutor', views.tutor, name='tutor'),
+    path('coaching', views.coaching, name='coaching'),
+    path('school', views.school, name='school'),
+    path('show-tutor', views.show_tutor, name='show_tutor'),
+    path('show-coaching', views.show_coaching, name='show_coaching'),
+    path('show-school', views.show_school, name='show_school'),
 ]
